@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SECURITY BREACH DETECTED</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    overflow: hidden;
+  }
+  #terminal {
+    padding: 30px;
+    font-size: 1.2rem;
+    white-space: pre-line;
+  }
+  .target {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    border: 2px solid red;
+    box-shadow: 0 0 20px red;
+  }
+  .blink {
+    animation: blink 0.5s infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div id="terminal"></div>
+<img class="target" id="target1" src="target1.jpg">
+<img class="target" id="target2" src="target2.jpg">
+<img class="target" id="target3" src="target3.jpg">
+<script>
+const terminal = document.getElementById('terminal');
+const lines = [
+  '*** ALERT: UNAUTHORIZED ACCESS DETECTED ***',
+  'System files being accessed...',
+  'Tracking network activity...',
+  'Decrypting passwords...',
+  'Accessing confidential documents...',
+  'Camera and microphone activated...',
+  'IP traced: 192.168.1.105',
+  'System lockdown initiated...'
+];
+let i = 0;
+
+function typeLine() {
+  if (i < lines.length) {
+    terminal.innerHTML += lines[i] + '\n';
+    i++;
+    setTimeout(typeLine, 800);
+  }
+}
+
+typeLine();
+
+// Flash images
+const images = [document.getElementById('target1'), document.getElementById('target2'), document.getElementById('target3')];
+let imgIndex = 0;
+function flashImages() {
+  images.forEach(img => img.style.display = 'none');
+  images[imgIndex].style.display = 'block';
+  imgIndex = (imgIndex + 1) % images.length;
+}
+
+// Start flashing after 2 seconds to build tension
+setTimeout(() => {
+  setInterval(flashImages, 500);
+}, 2000);
+
+// Reveal prank after 10 seconds
+setTimeout(() => {
+  terminal.innerHTML += '\n😂 Relax — you got pranked.\n';
+}, 10000);
+</script>
+</body>
+</html>
